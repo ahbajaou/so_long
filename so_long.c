@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/15 21:20:58 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:45:52 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-int ft_ber(char *a)
+
+void ft_error(void)
+{
+	printf("Error\n");
+	exit(1);
+}
+
+void  ft_ber(char *a)
 {
 	int i = 0;
 	int j = 0;
@@ -34,17 +41,11 @@ int ft_ber(char *a)
 		}
 		else
 		{
-			return (0);
+			ft_error();
 		}
 	}
-	return (1);
 }
 
-void ft_error(void)
-{
-	printf("Error\n");
-	exit(1);
-}
 void check_firstandlastline(char *line)
 {
 	int i = 0;
@@ -153,32 +154,12 @@ void	check_player_exit_collec(char **line)
 	}
 
 }
-int main(int ac, char **av)
+void	pars_maps(char **map)
 {
-	if (ac == 2)
-	{
-		int fd;
-		char *tmp;
-		char *new = NULL;
-		char **map;
-
-		if (!ft_ber(av[1]))
-			return (0);
-		fd = open("maps.ber", O_RDONLY);
-		tmp = get_next_line(fd);
-		while(tmp)
-		{
-			new = ft_strjoin(new,tmp);
-			free(tmp);
-			tmp = get_next_line(fd);
-		}
-		new = ft_check_new_line(new);
-		map = ft_split(new, '\n');
-		int len = 0;
+	int len = 0;
 		while (map[len])
 			len++;
 		int i = 0;
-		check_player_exit_collec(map);
 		while (i < len)
 		{
 			int l = 0;
@@ -208,9 +189,32 @@ int main(int ac, char **av)
 				check_char_in_map(map,i);
 			}
 			check_all_line(&map[i][l]);
+			check_player_exit_collec(map);
 			i++;
 		}
-		return (0);
+}
+int main(int ac, char **av)
+{
+	if (ac == 2)
+	{
+		int fd;
+		char *tmp;
+		char *new = NULL;
+		char **map;
+
+		
+		ft_ber(av[1]);
+		fd = open("maps.ber", O_RDONLY);
+		tmp = get_next_line(fd);
+		while(tmp)
+		{
+			new = ft_strjoin(new,tmp);
+			free(tmp);
+			tmp = get_next_line(fd);
+		}
+		new = ft_check_new_line(new);
+		map = ft_split(new, '\n');
+		pars_maps(map);
 	}
 	else
 		printf("---Please enter 2 argument---");
