@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/14 17:40:53 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:36:42 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ void check_firstandlastline(char *line)
 void	check_all_line(char *line)
 {
 	int i = 0;
+	int len = ft_strlen((char *)line) - 1;
 	while (line[i])
 	{
-		if (line[0] == '1' && line[21] == '1')
+		if (line[0] == '1' && line[len] == '1')
 			i++;
 		else
 			ft_error();
@@ -70,10 +71,14 @@ void	check_all_line(char *line)
 char  *ft_check_new_line(char *line)
 {
 	int i = 0;
-	int len = ft_strlen((char *)line) - 1;
+	int len = ft_strlen((char *)line);
 	while (line[i])
 	{
-		if (line[0] == '\n' || line[len] == '\n')
+		if (line[i] == '\n' && line[i + 1] == '1' && line[i - 1] == '\n')
+			{
+				ft_error();
+			}
+		if (line[0] == '\n' || line[len - 1] == '\n')
 			{
 				ft_error();
 			}
@@ -99,6 +104,18 @@ void	check_char_in_map(char **line,int i)
 		i++;
 	}
 }
+void	count_leght(char *line,int len)
+{
+	int i = 0;
+	while (line[i])
+		i++;
+	if (i == len)
+	{
+
+	}
+	else
+		ft_error();
+}
 int main(int ac, char **av)
 {
 	if (ac == 2)
@@ -120,40 +137,41 @@ int main(int ac, char **av)
 		}
 		new = ft_check_new_line(new);
 		map = ft_split(new, '\n');
-		int len = ft_strlen((char *)map);
+		int len = 0;
+		while (map[len])
+			len++;
 		int i = 0;
-		while (i <= len)
+		while (i < len)
 		{
 			int l = 0;
-			if (i == 0 || i == (int)ft_strlen((char *)map[i]) - 1)
+			int j = 0;
+			while (map[0][j])
+				j++;
+			count_leght(&map[i][l],j);
+			if (i == 0 || i == len - 1)
 			{
-				int j = 0;
-				int k = 0;
+				j = 0;
 				while (map[0][j])
 				{
 					check_firstandlastline(&map[0][j]);
 					j++;
 				}
-				while (map[8][k])
+				j = 0;
+				while (map[len - 1][j])
 				{
-					check_firstandlastline(&map[8][k]);
-					k++;
+					check_firstandlastline(&map[len - 1][j]);
+					j++;
 				}
 				
 			}
-			else if (i == 1 || i == (int)ft_strlen((char *)map[i] - 1))
+			else if (i >= 1 && i <= len - 1)
 			{
 				check_char_in_map(map,i);
 			}
 			check_all_line(&map[i][l]);
-		
-			// printf("here");
 			i++;
 		}
 		return (0);
-	// 	str = get_map(fd);
-	// 	map = ft_split(str, '\n');
-		// system("leaks so_long");
 	}
 	else
 		printf("---Please enter 2 argument---");
