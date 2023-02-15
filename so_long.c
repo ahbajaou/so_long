@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/15 16:36:42 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/15 21:20:58 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,43 @@ void	count_leght(char *line,int len)
 	else
 		ft_error();
 }
+void	check_player_exit_collec(char **line)
+{
+	int len = 0;
+	int j = 0;
+	int i = 0;
+	int c = 0;
+	int p = 0;
+	int e = 0;
+	while (line[len])
+		len++;
+	while (i < len)
+	{
+		while (line[i][j])
+		{
+			if (line[i][j] == 'C')
+			{
+				c++;
+			}
+			if (line[i][j] == 'P')
+			{
+				p++;
+			}
+			if (line[i][j] == 'E')
+			{
+				e++;
+			}
+			j++;
+		}
+		i++;
+		j = 0;
+	}
+	if (c < 1 || e != 1 || p != 1)
+	{
+		ft_error();
+	}
+
+}
 int main(int ac, char **av)
 {
 	if (ac == 2)
@@ -141,6 +178,7 @@ int main(int ac, char **av)
 		while (map[len])
 			len++;
 		int i = 0;
+		check_player_exit_collec(map);
 		while (i < len)
 		{
 			int l = 0;
@@ -148,6 +186,7 @@ int main(int ac, char **av)
 			while (map[0][j])
 				j++;
 			count_leght(&map[i][l],j);
+			l = 0;
 			if (i == 0 || i == len - 1)
 			{
 				j = 0;
