@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/15 21:45:52 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:48:22 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ void	check_all_line(char *line)
 }
 char  *ft_check_new_line(char *line)
 {
-	int i = 0;
+	int index = 0;
 	int len = ft_strlen((char *)line);
-	while (line[i])
+	while (line[index])
 	{
-		if (line[i] == '\n' && line[i + 1] == '1' && line[i - 1] == '\n')
+		if (line[index] == '\n' && line[index + 1] == '1' && line[index - 1] == '\n')
 			{
 				ft_error();
 			}
@@ -83,7 +83,7 @@ char  *ft_check_new_line(char *line)
 			{
 				ft_error();
 			}
-			i++;
+			index++;
 	}
 	return (line);
 }
@@ -193,8 +193,45 @@ void	pars_maps(char **map)
 			i++;
 		}
 }
+void	ft_posistion(char **map, t_maps *gl)
+{
+	int i = 0;
+	int j;
+	
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'P')
+			{
+				gl->py = i;
+				gl->px = j;
+				break;
+			}
+				
+			j++;
+		}
+		i++;
+	}
+	printf("y = %d   x = %d\n", gl->py, gl->px);
+}
+void	flood_fill(char **map, int py, int px)
+{
+	if (py >= 8 || px >= 21 || map[py][px] == '1')
+		return;
+	map[py][px] = '*';
+	flood_fill(map, py + 1, px);
+	flood_fill(map, py , px + 1);
+	flood_fill(map, py - 1, px);
+	flood_fill(map, py , px - 1);
+}
+
 int main(int ac, char **av)
 {
+	t_maps	*gl;
+	gl = malloc(sizeof(t_maps));
+
 	if (ac == 2)
 	{
 		int fd;
@@ -215,6 +252,8 @@ int main(int ac, char **av)
 		new = ft_check_new_line(new);
 		map = ft_split(new, '\n');
 		pars_maps(map);
+		ft_posistion(map, gl);
+		flood_fill(map, gl->py, gl->px);
 	}
 	else
 		printf("---Please enter 2 argument---");

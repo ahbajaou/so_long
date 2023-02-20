@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/11 22:03:59 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:32:19 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 #  define BUFFER_SIZE 1
 
 # endif
+
+typedef struct s_maps{
+    int px;
+    int py;
+    int len;
+    int index;
+} t_maps;
 
 char	*get_next_line(int fd);
 char	**ft_split(char *s, char c);
