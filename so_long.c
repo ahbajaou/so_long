@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/20 22:48:22 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:57:05 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <mlx.h>
 
 void ft_error(void)
 {
@@ -117,14 +118,14 @@ void	count_leght(char *line,int len)
 	else
 		ft_error();
 }
-void	check_player_exit_collec(char **line)
+void	check_player_exit_collec(char **line,t_maps *go)
 {
 	int len = 0;
 	int j = 0;
 	int i = 0;
-	int c = 0;
 	int p = 0;
 	int e = 0;
+	go->coin = 0;
 	while (line[len])
 		len++;
 	while (i < len)
@@ -133,7 +134,7 @@ void	check_player_exit_collec(char **line)
 		{
 			if (line[i][j] == 'C')
 			{
-				c++;
+				go->coin++;
 			}
 			if (line[i][j] == 'P')
 			{
@@ -148,13 +149,13 @@ void	check_player_exit_collec(char **line)
 		i++;
 		j = 0;
 	}
-	if (c < 1 || e != 1 || p != 1)
+	if (go->coin < 1 || e != 1 || p != 1)
 	{
 		ft_error();
 	}
 
 }
-void	pars_maps(char **map)
+void	pars_maps(char **map,t_maps *go)
 {
 	int len = 0;
 		while (map[len])
@@ -189,48 +190,58 @@ void	pars_maps(char **map)
 				check_char_in_map(map,i);
 			}
 			check_all_line(&map[i][l]);
-			check_player_exit_collec(map);
+			check_player_exit_collec(map, go);
 			i++;
 		}
 }
-void	ft_posistion(char **map, t_maps *gl)
+void	ft_position(char **maps,t_maps *go)
 {
 	int i = 0;
 	int j;
-	
-	while (map[i])
+	while (maps[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (maps[i][j])
 		{
-			if (map[i][j] == 'P')
+			if (maps[i][j] == 'P')
 			{
-				gl->py = i;
-				gl->px = j;
+				go->px = i;
+				go->py = j;
 				break;
 			}
-				
 			j++;
 		}
 		i++;
 	}
-	printf("y = %d   x = %d\n", gl->py, gl->px);
-}
-void	flood_fill(char **map, int py, int px)
-{
-	if (py >= 8 || px >= 21 || map[py][px] == '1')
-		return;
-	map[py][px] = '*';
-	flood_fill(map, py + 1, px);
-	flood_fill(map, py , px + 1);
-	flood_fill(map, py - 1, px);
-	flood_fill(map, py , px - 1);
 }
 
+int	ft_flood_fill(char **maps,int x,int y, t_maps *go)
+{
+	static int tmp_coins;
+	if (x >= 8 || y >= 21 || maps[x][y] == '1' || maps[x][y] == '*')
+		return 0;
+	if (maps[x][y] == 'C')
+		tmp_coins++;
+	maps[x][y] = '*';
+	ft_flood_fill(maps,x + 1, y, go);
+	ft_flood_fill(maps,x, y + 1, go);
+	ft_flood_fill(maps,x - 1, y, go);
+	ft_flood_fill(maps,x, y - 1, go);
+	return tmp_coins;
+}
+
+int check_C(char **maps,int x,int y, t_maps *go)
+{
+	int i = ft_flood_fill(maps,x,y, go);
+	if (i == go->coin)
+		return 1;
+	ft_error();
+	return 0;
+}
 int main(int ac, char **av)
 {
-	t_maps	*gl;
-	gl = malloc(sizeof(t_maps));
+	t_maps	*go;
+	go = malloc(sizeof(t_maps));
 
 	if (ac == 2)
 	{
@@ -241,7 +252,7 @@ int main(int ac, char **av)
 
 		
 		ft_ber(av[1]);
-		fd = open("maps.ber", O_RDONLY);
+		fd = open(av[1], O_RDONLY);
 		tmp = get_next_line(fd);
 		while(tmp)
 		{
@@ -251,9 +262,17 @@ int main(int ac, char **av)
 		}
 		new = ft_check_new_line(new);
 		map = ft_split(new, '\n');
-		pars_maps(map);
-		ft_posistion(map, gl);
-		flood_fill(map, gl->py, gl->px);
+		pars_maps(map,go);
+		ft_position(map, go);
+		check_C(map,go->px,go->py, go);
+			
+		int i = 0;
+		while (map[i])
+		{
+			printf("%s\n",map[i]);
+			i++;
+		}
+		
 	}
 	else
 		printf("---Please enter 2 argument---");

@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/20 22:32:19 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:45:35 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_maps{
     int py;
     int len;
     int index;
+    int coin;
 } t_maps;
 
 char	*get_next_line(int fd);
