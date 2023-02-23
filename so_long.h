@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/21 22:45:35 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:25:22 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <mlx.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -31,12 +35,17 @@ typedef struct s_maps{
     int py;
     int len;
     int index;
+    int x;
+    int whidth;
+    int height;
     int coin;
+    char **new_map;
 } t_maps;
 
 char	*get_next_line(int fd);
 char	**ft_split(char *s, char c);
 int		ft_strchr(char *str);
+char *ft_strcpy(char *dst,char *src);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, unsigned int start, size_t len);

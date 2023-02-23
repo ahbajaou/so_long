@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/21 22:57:05 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:40:05 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,19 +157,18 @@ void	check_player_exit_collec(char **line,t_maps *go)
 }
 void	pars_maps(char **map,t_maps *go)
 {
-	int len = 0;
-		while (map[len])
-			len++;
+		while (map[go->height])
+			go->height++;
 		int i = 0;
-		while (i < len)
+		while (i < go->height)
 		{
 			int l = 0;
 			int j = 0;
-			while (map[0][j])
-				j++;
-			count_leght(&map[i][l],j);
+			while (map[0][go->whidth])
+				go->whidth++;
+			count_leght(&map[i][l],go->whidth);
 			l = 0;
-			if (i == 0 || i == len - 1)
+			if (i == 0 || i == go->height - 1)
 			{
 				j = 0;
 				while (map[0][j])
@@ -178,14 +177,14 @@ void	pars_maps(char **map,t_maps *go)
 					j++;
 				}
 				j = 0;
-				while (map[len - 1][j])
+				while (map[go->height - 1][j])
 				{
-					check_firstandlastline(&map[len - 1][j]);
+					check_firstandlastline(&map[go->height - 1][j]);
 					j++;
 				}
 				
 			}
-			else if (i >= 1 && i <= len - 1)
+			else if (i >= 1 && i <= go->height - 1)
 			{
 				check_char_in_map(map,i);
 			}
@@ -238,6 +237,22 @@ int check_C(char **maps,int x,int y, t_maps *go)
 	ft_error();
 	return 0;
 }
+void set_img_in_maps(char **new_maps,t_maps *go)
+{
+		void	*mlx_ptr;
+		void	*mlx_win;
+		void	*mlx_img;
+		int  x = go * 50;
+		int y = go *50;
+
+		(void)new_maps;
+		mlx_ptr = mlx_init();
+		mlx_win = mlx_new_window(mlx_ptr, x, y, "so_long");
+		mlx_img = mlx_xpm_file_to_image(mlx_ptr, "./Ard.xpm", &x, &y);
+		mlx_put_image_to_window(mlx_ptr, mlx_win, mlx_img, 0, 0);
+		mlx_destroy_image(mlx_ptr, mlx_img);
+		mlx_loop(mlx_ptr);
+}
 int main(int ac, char **av)
 {
 	t_maps	*go;
@@ -264,15 +279,9 @@ int main(int ac, char **av)
 		map = ft_split(new, '\n');
 		pars_maps(map,go);
 		ft_position(map, go);
-		check_C(map,go->px,go->py, go);
-			
-		int i = 0;
-		while (map[i])
-		{
-			printf("%s\n",map[i]);
-			i++;
-		}
-		
+		go->new_map = ft_split(map[go->x],'\n');
+		check_C(map ,go->px,go->py, go);
+		set_img_in_maps(go->new_map,go);
 	}
 	else
 		printf("---Please enter 2 argument---");
