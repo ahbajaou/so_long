@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/23 20:25:22 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/02/25 23:33:14 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@
 
 # endif
 
+typedef struct s_win{
+    int cnt;
+    int in;
+    int i;
+    int j;
+    void	*mlx;
+
+} t_win;
+
 typedef struct s_maps{
     int px;
     int py;
@@ -39,9 +48,13 @@ typedef struct s_maps{
     int whidth;
     int height;
     int coin;
+    char **map;
     char **new_map;
 } t_maps;
 
+
+void put_back(t_maps *go);
+void put_wall(t_maps *go);
 char	*get_next_line(int fd);
 char	**ft_split(char *s, char c);
 int		ft_strchr(char *str);

@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/23 20:40:05 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:22:46 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,25 +237,14 @@ int check_C(char **maps,int x,int y, t_maps *go)
 	ft_error();
 	return 0;
 }
-void set_img_in_maps(char **new_maps,t_maps *go)
-{
-		void	*mlx_ptr;
-		void	*mlx_win;
-		void	*mlx_img;
-		int  x = go * 50;
-		int y = go *50;
 
-		(void)new_maps;
-		mlx_ptr = mlx_init();
-		mlx_win = mlx_new_window(mlx_ptr, x, y, "so_long");
-		mlx_img = mlx_xpm_file_to_image(mlx_ptr, "./Ard.xpm", &x, &y);
-		mlx_put_image_to_window(mlx_ptr, mlx_win, mlx_img, 0, 0);
-		mlx_destroy_image(mlx_ptr, mlx_img);
-		mlx_loop(mlx_ptr);
-}
+
+
+
 int main(int ac, char **av)
 {
 	t_maps	*go;
+		
 	go = malloc(sizeof(t_maps));
 
 	if (ac == 2)
@@ -265,7 +254,6 @@ int main(int ac, char **av)
 		char *new = NULL;
 		char **map;
 
-		
 		ft_ber(av[1]);
 		fd = open(av[1], O_RDONLY);
 		tmp = get_next_line(fd);
@@ -277,11 +265,13 @@ int main(int ac, char **av)
 		}
 		new = ft_check_new_line(new);
 		map = ft_split(new, '\n');
+		go->new_map = ft_split(new,'\n');
+
 		pars_maps(map,go);
 		ft_position(map, go);
-		go->new_map = ft_split(map[go->x],'\n');
 		check_C(map ,go->px,go->py, go);
-		set_img_in_maps(go->new_map,go);
+		put_back(go);
+		put_wall(go);
 	}
 	else
 		printf("---Please enter 2 argument---");
