@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/02 17:44:23 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:21:52 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int main(int ac, char **av)
 {
 	t_maps	*go;
-		
+	t_win *win;
+
+    win = malloc(sizeof(t_win));
 	go = malloc(sizeof(t_maps));
 
 	if (ac == 2)
@@ -36,12 +38,12 @@ int main(int ac, char **av)
 		}
 		new = ft_check_new_line(new);
 		map = ft_split(new, '\n');
-		go->new_map = ft_split(new,'\n');
+		win->new_map = ft_split(new,'\n');
 
-		pars_maps(map,go);
-		player_position(map, go);
-		check_collec_flood(map ,go->px,go->py, go);
-		set_img_in_win(go);
+		pars_maps(map,go,win);
+		player_position(map, win);
+		check_collec_flood(map ,win->px,win->py,go,win);
+		set_img_in_win(win);
 	}
 	else
 		printf("---Please enter 2 argument---");

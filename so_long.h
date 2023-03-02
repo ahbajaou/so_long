@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/02 17:44:20 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:20:08 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,40 +32,40 @@ typedef struct s_win{
     int in;
     int i;
     int j;
+    int px;
+    int py;
+    int whidth;
+    int height;  
+    char **new_map;
     void	*mlx_img;
     void    *mlx_ptr;
     void    *mlx_win;
-
 } t_win;
 
 typedef struct s_maps{
-    int px;
-    int py;
+  
     int len;
     int index;
     int x;
-    int whidth;
-    int height;
     int coin;
     char **map;
-    char **new_map;
+  
 } t_maps;
 
 
-void set_img_in_win(t_maps *go);
-void    set_back_in_win(t_maps *go,t_win *win);
-void    set_wall_in_win(t_maps *go,t_win *win);
-void    set_collec_in_win(t_maps *go,t_win *win);
-void    set_player_in_win(t_maps *go,t_win *win);
-void put_wall(t_maps *go);
+void set_img_in_win(t_win *win);
+void    set_back_in_win(t_win *win);
+void    set_wall_in_win(t_win *win);
+void    set_collec_in_win(t_win *win);
+void    set_player_in_win(t_win *win);
 void  ft_ber(char *a );
 void ft_error(void);
 void	count_leght(char *line,int len);
 void	check_player_exit_collec(char **line,t_maps *go);
-void	pars_maps(char **map,t_maps *go);
-void	player_position(char **maps,t_maps *go);
-int check_collec_flood(char **maps,int x,int y, t_maps *go);
-int	ft_flood_fill(char **maps,int x,int y, t_maps *go);
+void	pars_maps(char **map,t_maps *go,t_win *win);
+void	player_position(char **maps,t_win *win);
+int check_collec_flood(char **maps,int x,int y, t_maps *go , t_win *win);
+int	ft_flood_fill(char **maps,int x,int y, t_win *win);
 void	check_char_in_map(char **line,int i);
 char  *ft_check_new_line(char *line);
 void	check_all_line(char *line);
