@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/25 23:33:14 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:44:20 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@
 # include <stdarg.h>
 # include <signal.h>
 # include <stdlib.h>
-# include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <mlx.h>
 
 # ifndef BUFFER_SIZE
@@ -35,7 +32,9 @@ typedef struct s_win{
     int in;
     int i;
     int j;
-    void	*mlx;
+    void	*mlx_img;
+    void    *mlx_ptr;
+    void    *mlx_win;
 
 } t_win;
 
@@ -53,8 +52,24 @@ typedef struct s_maps{
 } t_maps;
 
 
-void put_back(t_maps *go);
+void set_img_in_win(t_maps *go);
+void    set_back_in_win(t_maps *go,t_win *win);
+void    set_wall_in_win(t_maps *go,t_win *win);
+void    set_collec_in_win(t_maps *go,t_win *win);
+void    set_player_in_win(t_maps *go,t_win *win);
 void put_wall(t_maps *go);
+void  ft_ber(char *a );
+void ft_error(void);
+void	count_leght(char *line,int len);
+void	check_player_exit_collec(char **line,t_maps *go);
+void	pars_maps(char **map,t_maps *go);
+void	player_position(char **maps,t_maps *go);
+int check_collec_flood(char **maps,int x,int y, t_maps *go);
+int	ft_flood_fill(char **maps,int x,int y, t_maps *go);
+void	check_char_in_map(char **line,int i);
+char  *ft_check_new_line(char *line);
+void	check_all_line(char *line);
+void check_firstandlastline(char *line);
 char	*get_next_line(int fd);
 char	**ft_split(char *s, char c);
 int		ft_strchr(char *str);
