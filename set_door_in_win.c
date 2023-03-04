@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_wall_in_win.c                                  :+:      :+:    :+:   */
+/*   set_door_in_win.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 16:55:23 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/04 21:49:55 by ahbajaou         ###   ########.fr       */
+/*   Created: 2023/03/03 16:29:35 by ahbajaou          #+#    #+#             */
+/*   Updated: 2023/03/04 22:25:05 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	drawin_wall(t_win *win, int j, int i)
+void	drawin_door(t_win *win, int j, int i)
 {
 	int	x;
 	int	y;
@@ -20,16 +20,16 @@ void	drawin_wall(t_win *win, int j, int i)
 	x = win->height * 50;
 	y = win->whidth * 50;
 	win->mlx_img = mlx_xpm_file_to_image(win->mlx_ptr, \
-	"./hit.xpm", &y, &x);
+	"./hole.xpm", &y, &x);
 	mlx_put_image_to_window(win->mlx_ptr, win->mlx_win, \
 	win->mlx_img, j, i);
 	mlx_destroy_image(win->mlx_ptr, win->mlx_img);
 }
 
-void	set_wall_in_win(t_win *win)
+void	set_door_in_win(t_win *win)
 {
-	int	j;
 	int	i;
+	int	j;
 
 	i = 0;
 	win->i = 0;
@@ -39,10 +39,8 @@ void	set_wall_in_win(t_win *win)
 		j = 0;
 		while (win->new_map[win->i][win->j])
 		{
-			if (win->new_map[win->i][win->j] == '1')
-			{
-				drawin_wall(win, j, i);
-			}
+			if (win->new_map[win->i][win->j] == 'E')
+				drawin_door(win, j, i);
 			j += 50;
 			win->j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 15:38:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/11 21:59:01 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:29:01 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,3 @@ char	*get_next_line(int fd)
 	stati = ft_save_stati(stati);
 	return (ster);
 }
-
-

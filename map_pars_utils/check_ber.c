@@ -6,17 +6,21 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:14:17 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/02 17:14:53 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:03:19 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void  ft_ber(char *a )
+void	ft_ber(char *a)
 {
-	int i = 0;
-	int j = 0;
-	char str[] = ".ber";
+	int		i;
+	int		j;
+	char	*str;
+
+	str = ".ber";
+	j = 0;
+	i = 0;
 	while (a[i])
 		i++;
 	while (str[j])

@@ -6,14 +6,14 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:16:48 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/02 17:17:14 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:49:44 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void ft_error(void)
+void	ft_error(void)
 {
-	printf("Error\n");
+	write(1, "Error\n", 7);
 	exit(1);
 }
