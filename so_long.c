@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/04 23:48:23 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:57:14 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int ac, char **av)
 	{
 		ft_ber(av[1]);
 		go->fd = open(av[1], O_RDONLY);
+		if (go->fd < 0)
+			return (0);
 		get_next_map(go);
 		go->new = ft_check_new_line(go->new);
 		go->map = ft_split(go->new, '\n');
@@ -45,5 +47,4 @@ int	main(int ac, char **av)
 	}
 	else
 		write(1, "---Please enter 2 argument---\n", 31);
-	system("leaks so_long");
 }

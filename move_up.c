@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 23:18:22 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/04 22:48:21 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/05 22:28:55 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	move_up(t_win *win)
 	int	x;
 	int	y;
 
+	player_move(win);
 	x = win->height * 50;
 	y = win->whidth * 50;
 	if (win->new_map[win->px + 1][win->py] == 'C')

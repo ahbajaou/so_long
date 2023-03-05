@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/04 23:45:28 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/05 23:22:48 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SO_LONG_H
 
 # include <stdarg.h>
-# include <signal.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -36,6 +35,7 @@ typedef struct s_win{
 	int		coin;
 	int		whidth;
 	int		height;
+	int		player;
 	char	**new_map;
 	void	*mlx_img;
 	void	*mlx_ptr;
@@ -58,6 +58,7 @@ typedef struct s_maps{
 	char	**map;
 }	t_maps;
 
+void	player_move(t_win *win);
 void	set_img_in_win(t_win *win);
 void	set_back_in_win(t_win *win);
 void	set_wall_in_win(t_win *win);
@@ -88,5 +89,6 @@ char	*ft_strcpy(char *dst, char *src);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, unsigned int start, size_t len);
+int		ft_printf(const char *str, ...);
 
 #endif
