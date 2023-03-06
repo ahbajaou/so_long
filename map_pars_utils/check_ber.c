@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:14:17 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/04 17:03:19 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/06 22:25:48 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,11 @@ void	ft_ber(char *a)
 		j++;
 	i -= 1;
 	j -= 1;
-	while (j > 0)
+	while (j >= 0 && str[j] == a[i])
 	{
-		if (str[j] == a[i])
-		{
-			i--;
-			j--;
-		}
-		else
-		{
-			ft_error();
-		}
+		i--;
+		j--;
 	}
+	if (str[j + 1] != '.' || str[j + 1] != a[i + 1])
+		ft_error();
 }

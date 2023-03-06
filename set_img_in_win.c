@@ -6,13 +6,13 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 20:59:36 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/05 22:20:06 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/06 00:56:28 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	key_handler(int key, t_win *win)
+int	preskey_handler(int key, t_win *win)
 {
 	if ((key == 124 || key == 2) && (win->new_map[win->px][win->py + 1] != '1'\
 	&& win->new_map[win->px][win->py + 1] != 'E'))
@@ -28,6 +28,11 @@ int	key_handler(int key, t_win *win)
 		move_down(win);
 	else if (win->coin == 0)
 		eat_coin_exit(win, key);
+	else if (key == 53)
+	{
+		ft_printf("<Exit Game>");
+		exit (0);
+	}
 	return (0);
 }
 
@@ -45,7 +50,7 @@ void	set_img_in_win(t_win *win)
 	set_collec_in_win(win);
 	set_door_in_win(win);
 	set_player_in_win(win);
-	mlx_hook(win->mlx_win, 2, 0L, key_handler, win);
+	mlx_hook(win->mlx_win, 2, 0L, preskey_handler, win);
 	mlx_hook(win->mlx_win, 17, 0L, (void *)exit, win);
 	mlx_loop(win->mlx_ptr);
 }
