@@ -6,23 +6,20 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:29:03 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/04 16:53:02 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/08 02:41:05 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	count_leght(char *line, int len)
+void	count_leght(t_maps *go, t_win *win)
 {
-	int	i;
-
-	i = 0;
-	while (line[i])
-		i++;
-	if (i == len)
+	go->i = 0;
+	while (go->i < win->height)
 	{
-		i = len;
+		go->len = ft_strlen(go->map[go->i]);
+		if (go->len != win->whidth)
+			ft_error();
+		go->i++;
 	}
-	else
-		ft_error();
 }

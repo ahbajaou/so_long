@@ -6,13 +6,13 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 04:45:53 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/02/11 21:58:46 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/08 00:06:04 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	ft_strchr(char *str)
+int	ft_strchr(char *str, char c)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ int	ft_strchr(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '\n')
+		if (str[i] == c)
 			return (1);
 		i++;
 	}

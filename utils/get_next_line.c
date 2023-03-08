@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 15:38:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/04 16:29:01 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/07 23:52:13 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_read_stati(int fd, char *stati)
 	if (!buf)
 		return (NULL);
 	nb = 1;
-	while (!ft_strchr(stati) && nb != 0)
+	while (!ft_strchr(stati, '\n') && nb != 0)
 	{
 		nb = read(fd, buf, BUFFER_SIZE);
 		if (nb == -1)

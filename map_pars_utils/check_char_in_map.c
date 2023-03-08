@@ -6,30 +6,28 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:27:57 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/04 16:58:29 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/08 02:39:35 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	check_char_in_map(char **line, int i)
+void	check_char_in_map(t_maps *go)
 {
-	int	len;
-	int	l;
+	int	i;
+	int	j;
 
-	len = ft_strlen((char *)line) - 1;
-	while (i <= len)
+	i = 0;
+	while (go->map[i])
 	{
-		l = 0;
-		while (line[i][l])
+		j = 0;
+		while (go->map[i][j])
 		{
-			if (line[i][l] == '1' || line[i][l] == '0' || line[i][l] == 'E'
-				|| line[i][l] == 'C' || line[i][l] == 'P')
-			{
-				l++;
-			}
-			else
+			if (!(go->map[i][j] == '1' || go->map[i][j] == '0'
+				|| go->map[i][j] == 'P' || go->map[i][j] == 'E'
+					|| go->map[i][j] == 'C'))
 				ft_error();
+			j++;
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/06 22:13:00 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/08 02:41:49 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	get_next_map(t_maps *go)
 {
-	go->tmp = get_next_line(go->fd);
-	while (go->tmp)
+	char	*tmp;
+
+	tmp = get_next_line(go->fd);
+	while (tmp)
 	{
-		go->new = ft_strjoin(go->new, go->tmp);
-		free(go->tmp);
-		go->tmp = get_next_line(go->fd);
+		go->new = ft_strjoin(go->new, tmp);
+		free(tmp);
+		tmp = get_next_line(go->fd);
 	}
 }
 
@@ -40,7 +42,7 @@ int	main(int ac, char **av)
 		go->new = ft_check_new_line(go->new);
 		go->map = ft_split(go->new, '\n');
 		win->new_map = ft_split(go->new, '\n');
-		pars_maps(go->map, go, win);
+		pars_maps(go, win);
 		player_position(go->map, win);
 		check_collec_flood(win->px, win->py, go, win);
 		set_img_in_win(win);

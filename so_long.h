@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/05 23:22:48 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/08 02:41:43 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,19 @@ void	move_up(t_win *win);
 void	move_down(t_win *win);
 void	ft_ber(char *a);
 void	ft_error(void);
-void	count_leght(char *line, int len);
-void	check_player_exit_collec(char **line, t_maps *go, t_win *win);
-void	pars_maps(char **map, t_maps *go, t_win *win);
+void	count_leght(t_maps *go, t_win *win);
+void	check_player_exit_collec(t_maps *go, t_win *win);
+void	pars_maps(t_maps *go, t_win *win);
 void	player_position(char **maps, t_win *win);
 int		check_collec_flood(int x, int y, t_maps *go, t_win *win);
 int		ft_flood_fill(char **maps, int x, int y, t_win *win);
-void	check_char_in_map(char **line, int i);
+void	check_char_in_map(t_maps *go);
 char	*ft_check_new_line(char *line);
-void	check_all_line(char *line);
-void	check_firstandlastline(char *line);
+void	check_all_line(t_maps *go, t_win *win);
+void	check_firstandlastline(t_maps *go, t_win *win);
 char	*get_next_line(int fd);
 char	**ft_split(char *s, char c);
-int		ft_strchr(char *str);
+int		ft_strchr(char *str, char c);
 char	*ft_strcpy(char *dst, char *src);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
