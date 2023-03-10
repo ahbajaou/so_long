@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:41:49 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/05 00:16:33 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/10 03:00:27 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	ft_flood_fill(char **maps, int x, int y, t_win *win)
 {
 	static int	tmp_coins;
 
-	if (maps[x][y] == '1' || maps[x][y] == '*' || maps[x][y] == 'E')
+	if (maps[x][y] == '1' || maps[x][y] == '*' || maps[x][y] == 'E'
+		|| maps[x][y] == 'F')
 		return (0);
 	if (maps[x][y] == 'C')
 		tmp_coins++;

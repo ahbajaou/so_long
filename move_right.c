@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 23:22:55 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/05 22:28:36 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/10 03:02:17 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	move_right(t_win *win)
 	int	x;
 	int	y;
 
-	player_move(win);
 	x = win->height * 50;
 	y = win->whidth * 50;
 	if (win->new_map[win->px][win->py + 1] == 'C')
@@ -34,4 +33,5 @@ void	move_right(t_win *win)
 	mlx_put_image_to_window(win->mlx_ptr, win->mlx_win, \
 	win->mlx_img, win->py * 50, win->px * 50);
 	mlx_destroy_image(win->mlx_ptr, win->mlx_img);
+	player_move(win);
 }

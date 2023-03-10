@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:27:57 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/08 02:39:35 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/08 03:17:42 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_char_in_map(t_maps *go)
 		{
 			if (!(go->map[i][j] == '1' || go->map[i][j] == '0'
 				|| go->map[i][j] == 'P' || go->map[i][j] == 'E'
-					|| go->map[i][j] == 'C'))
+					|| go->map[i][j] == 'C' || go->map[i][j] == 'F'))
 				ft_error();
 			j++;
 		}

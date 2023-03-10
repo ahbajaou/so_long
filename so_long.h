@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/08 02:41:43 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/10 02:50:30 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include <stdarg.h>
+# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -36,6 +37,8 @@ typedef struct s_win{
 	int		whidth;
 	int		height;
 	int		player;
+	int		move;
+	char	*moves;
 	char	**new_map;
 	void	*mlx_img;
 	void	*mlx_ptr;
@@ -53,12 +56,14 @@ typedef struct s_maps{
 	int		i;
 	int		j;
 	int		l;
+	int		f;
 	char	*tmp;
 	char	*new;
 	char	**map;
 }	t_maps;
 
 void	player_move(t_win *win);
+void	set_enemy_in_win(t_win *win);
 void	set_img_in_win(t_win *win);
 void	set_back_in_win(t_win *win);
 void	set_wall_in_win(t_win *win);
@@ -72,7 +77,10 @@ void	move_up(t_win *win);
 void	move_down(t_win *win);
 void	ft_ber(char *a);
 void	ft_error(void);
+void	print_in_win(t_win *win);
+void	drawin_wall(t_win *win, int j, int i);
 void	count_leght(t_maps *go, t_win *win);
+char	*ft_itoa(int n);
 void	check_player_exit_collec(t_maps *go, t_win *win);
 void	pars_maps(t_maps *go, t_win *win);
 void	player_position(char **maps, t_win *win);

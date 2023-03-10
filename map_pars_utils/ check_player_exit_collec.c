@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:34:48 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/08 02:03:16 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/10 05:25:34 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	check_player_exit_collec(t_maps *go, t_win *win)
 {
-	go->j = 0;
 	go->i = 0;
 	go->p = 0;
 	go->e = 0;
+	go->f = 0;
 	go->coin = 0;
 	while (go->map[go->i])
 	{
@@ -30,11 +30,13 @@ void	check_player_exit_collec(t_maps *go, t_win *win)
 				go->p++;
 			if (go->map[go->i][go->j] == 'E')
 				go->e++;
+			if (go->map[go->i][go->j] == 'F')
+				go->f++;
 			go->j++;
 		}
 		go->i++;
 	}
-	if (go->coin < 1 || go->e != 1 || go->p != 1)
+	if (go->coin < 1 || go->e != 1 || go->p != 1 || go->f < 1)
 		ft_error();
 	win->coin = go->coin;
 }
