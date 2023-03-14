@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:40:09 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/10 07:58:19 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:42:07 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	get_next_map(t_maps *go)
 	char	*tmp;
 
 	tmp = get_next_line(go->fd);
+	if (!tmp)
+		ft_error();
 	while (tmp)
 	{
 		go->new = ft_strjoin(go->new, tmp);

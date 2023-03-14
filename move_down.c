@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 23:30:08 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/09 22:37:29 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/14 03:16:20 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@ void	move_down(t_win *win)
 		win->coin--;
 	}
 	win->mlx_img = mlx_xpm_file_to_image(win->mlx_ptr, "./back.xpm", &y, &x);
+	if (!win->mlx_img)
+		ft_error();
 	mlx_put_image_to_window(win->mlx_ptr, win->mlx_win, \
 	win->mlx_img, win->py * 50, win->px * 50);
 	mlx_destroy_image(win->mlx_ptr, win->mlx_img);
 	win->px -= 1;
-	win->mlx_img = mlx_xpm_file_to_image(win->mlx_ptr, "./mario.xpm", &y, &x);
+	win->mlx_img = mlx_xpm_file_to_image(win->mlx_ptr, "./mario2.xpm", &y, &x);
+	if (!win->mlx_img)
+		ft_error();
 	mlx_put_image_to_window(win->mlx_ptr, win->mlx_win, \
 	win->mlx_img, win->py * 50, win->px * 50);
 	mlx_destroy_image(win->mlx_ptr, win->mlx_img);

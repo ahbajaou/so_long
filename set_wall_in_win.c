@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 16:55:23 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/04 21:49:55 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:49:32 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	drawin_wall(t_win *win, int j, int i)
 	y = win->whidth * 50;
 	win->mlx_img = mlx_xpm_file_to_image(win->mlx_ptr, \
 	"./hit.xpm", &y, &x);
+	if (!win->mlx_img)
+		ft_error();
 	mlx_put_image_to_window(win->mlx_ptr, win->mlx_win, \
 	win->mlx_img, j, i);
 	mlx_destroy_image(win->mlx_ptr, win->mlx_img);

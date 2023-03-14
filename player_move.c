@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 22:20:16 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/10 07:59:21 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/14 03:45:36 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	set_wall_move(t_win *win)
 void	player_move(t_win *win)
 {
 	set_wall_move(win);
+	win->player++;
 	win->moves = ft_itoa(win->player);
 	mlx_string_put(win->mlx_ptr, win->mlx_win, 0, 0, 0xFFFFFF, win->moves);
-	win->player++;
 	ft_printf("--Move : %d\n", win->player);
 	free(win->moves);
 }
