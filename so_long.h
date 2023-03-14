@@ -6,7 +6,7 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 21:10:04 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/10 02:50:30 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/14 08:29:24 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_win{
 	int		px;
 	int		py;
 	int		coin;
+	int		exit;
 	int		whidth;
 	int		height;
 	int		player;
@@ -84,7 +85,7 @@ char	*ft_itoa(int n);
 void	check_player_exit_collec(t_maps *go, t_win *win);
 void	pars_maps(t_maps *go, t_win *win);
 void	player_position(char **maps, t_win *win);
-int		check_collec_flood(int x, int y, t_maps *go, t_win *win);
+void	check_collec_flood(int x, int y, t_maps *go, t_win *win);
 int		ft_flood_fill(char **maps, int x, int y, t_win *win);
 void	check_char_in_map(t_maps *go);
 char	*ft_check_new_line(char *line);

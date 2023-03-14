@@ -6,19 +6,19 @@
 /*   By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 17:43:08 by ahbajaou          #+#    #+#             */
-/*   Updated: 2023/03/05 00:37:14 by ahbajaou         ###   ########.fr       */
+/*   Updated: 2023/03/14 08:33:19 by ahbajaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	check_collec_flood(int x, int y, t_maps *go, t_win *win)
+void	check_collec_flood(int x, int y, t_maps *go, t_win *win)
 {
 	int	i;
 
 	i = ft_flood_fill(go->map, x, y, win);
-	if (i == go->coin)
-		return (1);
-	ft_error();
-	return (0);
+	if (i != go->coin)
+		ft_error();
+	if (win->exit != 1)
+		ft_error();
 }
