@@ -6,7 +6,7 @@
 #    By: ahbajaou <ahbajaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/08 21:09:39 by ahbajaou          #+#    #+#              #
-#    Updated: 2023/03/16 21:34:45 by ahbajaou         ###   ########.fr        #
+#    Updated: 2023/03/17 14:56:02 by ahbajaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,17 +24,17 @@ so_long_bonus/set_back_in_win.c so_long_bonus/set_collec_in_win.c so_long_bonus/
 MLX = -lmlx -framework OpenGL -framework AppKit
 
 all : so_long
-so_long_bonus : bonus
+so_long_bonus : bonus_so_long
 so_long : $(SRC)
 	cc $(FLAGS) $(SRC) $(MLX) -o so_long
 
-bonus : $(SRC_BONUS)
-	cc $(FLAGS) $(SRC_BONUS) $(MLX) -o bonus
+bonus_so_long : $(SRC_BONUS)
+	cc $(FLAGS) $(SRC_BONUS) $(MLX) -o bonus_so_long
 
 clean:
-	rm -f *.o
+	rm -rf so_long bonus_so_long
 fclean: clean
-	rm -rf so_long bonus
+	
 re: fclean all
 
 
